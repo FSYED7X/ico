@@ -4,7 +4,7 @@ import { StyledSmallTable } from "./StyledSmallTable";
 
 export default function InfoTable() {
   return (
-    <Box px={1}>
+    <Box px={2} pb={1}>
       <StyledSmallTable>
         {[
           {
@@ -36,10 +36,10 @@ export default function InfoTable() {
             <tbody key={`info-section-countdown-${index}`}>
               <tr>
                 <TableCell>
-                  <Typography variant="caption">{left}</Typography>
+                  <Typography variant="caption" fontWeight={500}>{left}</Typography>
                 </TableCell>
                 <TableCell align="right">
-                  <Typography variant="caption">{right}</Typography>
+                  <Typography variant="caption" fontWeight={400}>{right}</Typography>
                 </TableCell>
               </tr>
             </tbody>

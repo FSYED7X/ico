@@ -16,7 +16,7 @@ const CountDownTimer = () => {
     <StyledPaper sx={{ mb: isSmall && 2 }}>
       <Stack
         sx={{
-          bgcolor: colors.yellow.variant1,
+          bgcolor: colors.yellow.v1,
           p: 1,
           borderTopLeftRadius: 6,
           borderTopRightRadius: 6,
@@ -26,14 +26,14 @@ const CountDownTimer = () => {
         direction={"row"}
         spacing={1}
       >
-        <Typography variant="subtitle1" align="center" fontWeight={"600"}>
+        <Typography variant="subtitle1" align="center" fontWeight={"500"}>
           STAGE 1
         </Typography>
         <Typography
           variant="subtitle2"
           align="center"
-          color="#fff"
-          bgcolor={colors.yellow.variant3}
+          color={colors.white.v1}
+          bgcolor={colors.yellow.v3}
           py={0.5}
           px={1}
           borderRadius={1}

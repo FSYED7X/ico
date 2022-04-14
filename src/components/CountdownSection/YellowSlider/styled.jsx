@@ -3,17 +3,29 @@ import { styled } from "@mui/system";
 import colors from "./../../../colors";
 
 export const StyledSlider = styled(Slider)(({ theme }) => ({
-  color: colors.yellow.variant2,
+  color: colors.yellow.v2,
   height: 6,
   paddingBottom: 0,
   "& .MuiSlider-track": {
     border: "none",
+    "&:after": {
+      position: "absolute",
+      content: "''",
+      height: ".2rem",
+      width: ".25rem",
+      background: "white",
+      top: "50%",
+      transform: "translateY(-50%)",
+      left: 0,
+      borderRadius: "100%",
+      border: `3px solid ${colors.yellow.v2}`,
+    },
   },
   "& .MuiSlider-thumb": {
     height: 18,
     width: 18,
-    backgroundColor: "#fff",
-    border: `3px solid ${colors.yellow.variant2}`,
+    backgroundColor: colors.white.v1,
+    border: `3px solid ${colors.yellow.v2}`,
     "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
       boxShadow: "inherit",
     },
@@ -31,6 +43,23 @@ export const StyledSlider = styled(Slider)(({ theme }) => ({
         fontSize: "12px",
         userSelect: "none",
       },
+    },
+  },
+  "& .MuiSlider-rail": {
+    opacity: 0.2,
+    backgroundColor: colors.white.v2,
+
+    "&:after": {
+      position: "absolute",
+      content: "''",
+      height: ".2rem",
+      width: ".25rem",
+      background: "white",
+      top: "50%",
+      transform: "translateY(-50%)",
+      right: 0,
+      borderRadius: "100%",
+      border: `3px solid ${colors.white.v2}`,
     },
   },
 }));

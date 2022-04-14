@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import React from "react";
+import colors from "./../../colors";
 
 export default function BlackButton({ children, ...props }) {
   return (
@@ -11,10 +12,11 @@ export default function BlackButton({ children, ...props }) {
         textTransform: "capitalize",
         minWidth: 0,
         fontWeight: 400,
-        bgcolor: "#000",
-        color: "#fff",
+        bgcolor: colors.black.v1,
+        color: colors.white.v1,
         "&:hover": {
-          bgcolor: "#000",
+          bgcolor: colors.yellow.v1,
+          color: colors.black.v1,
         },
       }}
       {...props}

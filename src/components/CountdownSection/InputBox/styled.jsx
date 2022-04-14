@@ -3,11 +3,11 @@ import { styled } from "@mui/system";
 import colors from "./../../../colors";
 
 export const StyledYellowButton = styled(Button)(({ theme }) => ({
-  background: colors.yellow.variant2,
-  color: "#fff",
+  background: colors.yellow.v2,
+  color: colors.white.v1,
   "&:hover": {
-    background: colors.yellow.variant2,
-    color: "#fff",
+    background: colors.yellow.v2,
+    color: colors.white.v1,
   },
   // fontWeight: "bold",
 }));

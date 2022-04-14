@@ -33,8 +33,7 @@ export default function BannerSection() {
         <img
           src="/assets/banner.png"
           alt=""
-          height={isSmall ? 150 : "100%"}
-          style={{ objectFit: "cover" }}
+          height={"100%"}
           width="100%"
         />
       </Box>
@@ -61,7 +60,7 @@ export default function BannerSection() {
         }}
         ref={(ele) => !isSmall && setHeight(ele?.clientHeight)}
       >
-        <StyledPaper sx={{ p: isSmall ? 2 : 3 }}>
+        <StyledPaper sx={{ p: isSmall ? 2 : 3, pt: isSmall ? 0 : 3 }}>
           <Grid container spacing={isSmall ? 1 : 3}>
             <Grid
               item
@@ -71,8 +70,8 @@ export default function BannerSection() {
             >
               <Paper
                 sx={{
-                  mb: isSmall && "-100%",
-                  transform: isSmall && "translateY(-90%)",
+                  mb: isSmall && "-50%",
+                  transform: isSmall && "translateY(-48%)",
                   p: 0.8,
                   borderRadius: 2,
                 }}
@@ -87,6 +86,17 @@ export default function BannerSection() {
                 />
               </Paper>
             </Grid>
+
+            <Hidden smUp>
+              <Grid item xs={8} sx={{ display: "flex", alignItems: "center" }}>
+                <Typography
+                  variant={isSmall ? "h6" : "h4"}
+                  sx={{ fontWeight: "bolder", ml: 1 }}
+                >
+                  BabyDoge
+                </Typography>
+              </Grid>
+            </Hidden>
 
             <Grid item md={10}>
               <Stack
@@ -108,12 +118,15 @@ export default function BannerSection() {
                   spacing={!isSmall && 2}
                   alignItems={!isSmall && "center"}
                 >
-                  <Typography
-                    variant={isSmall ? "h6" : "h4"}
-                    sx={{ fontWeight: "bolder" }}
-                  >
-                    BabyDoge
-                  </Typography>
+                  <Hidden mdDown>
+                    <Typography
+                      variant={isSmall ? "h6" : "h4"}
+                      sx={{ fontWeight: "bolder" }}
+                    >
+                      BabyDoge
+                    </Typography>
+                  </Hidden>
+
                   <Stack
                     direction="row"
                     alignItems="center"

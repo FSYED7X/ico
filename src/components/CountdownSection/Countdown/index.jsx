@@ -24,12 +24,15 @@ function Countdown() {
         {[dys, hrs, mins, secs].map((item, index) => {
           return (
             <Box
-              bgcolor={colors.yellow.variant1}
+              bgcolor={colors.yellow.v1}
               border={2}
               borderRadius={2}
-              borderColor={colors.yellow.variant2}
-              px={1.5}
-              py={1}
+              borderColor={colors.yellow.v2}
+              height={"3rem"}
+              width={"3rem"}
+              display='flex'
+              alignItems={'center'}
+              justifyContent={'center'}
               key={`countdown-fragemnts-${index}`}
             >
               <Typography variant="h5" p={0} m={0} fontWeight={500}>

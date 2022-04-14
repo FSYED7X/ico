@@ -16,7 +16,7 @@ export default function InputBox() {
   const [val, setVal] = useState();
   const MAX = 12;
   return (
-    <Box px={1}>
+    <Box px={2}>
       <Typography variant="caption" fontWeight={"normal"}>
         Amount (Max: {MAX} BNB)
       </Typography>
@@ -35,7 +35,7 @@ export default function InputBox() {
                   fontWeight={"bolder"}
                   component={CardActionArea}
                   pb={0.5}
-                  color={colors.yellow.variant2}
+                  color={colors.yellow.v2}
                   variant={"h6"}
                   onClick={() => setVal(MAX)}
                 >

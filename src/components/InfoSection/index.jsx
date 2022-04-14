@@ -7,7 +7,7 @@ import Copy from "../Copy";
 export default function InfoSection() {
   return (
     <div>
-      <StyledPaper sx={{ p: 1 }}>
+      <StyledPaper sx={{ p: 1, px: 2 }}>
         {[
           {
             left: "Pre-Sale Contract Address",
@@ -19,7 +19,7 @@ export default function InfoSection() {
             right: "xcncjkxnckjnasduiofepirjndjcnadsf",
             helper: "(Do not send BNB to the token contract address)",
             copy: true,
-            color: colors.yellow.variant3,
+            color: colors.yellow.v3,
           },
           {
             left: "Token Name",
@@ -66,7 +66,7 @@ export default function InfoSection() {
               sx={{ borderBottom: "1px dashed #ccc", py: helper ? 0 : 1 }}
             >
               <Grid item>
-                <Typography variant="body2" fontWeight={"bold"}>
+                <Typography variant="body2" fontWeight={500}>
                   {left}
                 </Typography>
               </Grid>
@@ -75,12 +75,15 @@ export default function InfoSection() {
                   variant="body2"
                   color={color}
                   className="textPrimary"
-                  fontWeight={500}
+                  fontWeight={400}
                   align="right"
                 >
-                  {right} {copy && <Copy value={right} />}
+                  {right} {copy && <Copy value={right} title={left} />}
                 </Typography>
-                <Typography variant="caption" color="error.main">
+                <Typography
+                  variant="caption"
+                  color="error.main"
+                >
                   {helper}
                 </Typography>
               </Grid>
