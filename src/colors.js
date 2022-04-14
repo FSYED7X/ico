@@ -6,10 +6,16 @@ const colors = {
   },
   white: {
     v1: "#fff",
-    v2: "#bfbfbf",
+    v2: "#bfbfbf", //! slider blur background
+    v3: "#e6ebf1", //! styled paper border
+    v4: "#ccc",
   },
   black: {
     v1: "#000",
+    v2: "#333333",
+  },
+  blue: {
+    v1: "#65b2e5", //! form helper text
   },
 };
 

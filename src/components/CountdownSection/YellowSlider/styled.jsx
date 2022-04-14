@@ -36,7 +36,7 @@ export const StyledSlider = styled(Slider)(({ theme }) => ({
       display: "none",
     },
     "& .MuiSlider-valueLabel": {
-      background: "#333333",
+      background: colors.black.v2,
       padding: theme.spacing(0.5, 1),
       borderRadius: 5,
       "& .MuiSlider-valueLabelLabel": {

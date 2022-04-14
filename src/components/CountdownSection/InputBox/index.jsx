@@ -11,6 +11,7 @@ import {
 import React, { useState } from "react";
 import colors from "../../../colors";
 import { StyledTextField, StyledYellowButton } from "./styled";
+import colors from './../../../colors';
 
 export default function InputBox() {
   const [val, setVal] = useState();
@@ -49,7 +50,7 @@ export default function InputBox() {
           Buy
         </StyledYellowButton>
       </Stack>
-      <FormHelperText sx={{ fontWeight: 500, color: "#65b2e5" }}>
+      <FormHelperText sx={{ fontWeight: 500, color: colors.blue.v1 }}>
         You'll receive: 12342134213.234
       </FormHelperText>
     </Box>

@@ -63,7 +63,10 @@ export default function InfoSection() {
               justifyContent="space-between"
               alignItems={"center"}
               key={`info-section-${index}`}
-              sx={{ borderBottom: "1px dashed #ccc", py: helper ? 0 : 1 }}
+              sx={{
+                borderBottom: `1px dashed ${colors.white.v4}`,
+                py: helper ? 0 : 1,
+              }}
             >
               <Grid item>
                 <Typography variant="body2" fontWeight={500}>
@@ -80,10 +83,7 @@ export default function InfoSection() {
                 >
                   {right} {copy && <Copy value={right} title={left} />}
                 </Typography>
-                <Typography
-                  variant="caption"
-                  color="error.main"
-                >
+                <Typography variant="caption" color="error.main">
                   {helper}
                 </Typography>
               </Grid>
