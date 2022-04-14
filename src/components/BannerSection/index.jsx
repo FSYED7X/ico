@@ -34,7 +34,7 @@ export default function BannerSection() {
         <img src="/assets/banner.png" alt="" height={"100%"} width="100%" />
       </Box>
 
-      <Hidden smUp>
+      <Hidden mdUp>
         <Stack
           direction="row"
           spacing={1}
@@ -83,7 +83,7 @@ export default function BannerSection() {
               </Paper>
             </Grid>
 
-            <Hidden smUp>
+            <Hidden mdUp>
               <Grid item xs={8} sx={{ display: "flex", alignItems: "center" }}>
                 <Typography
                   variant={isSmall ? "h6" : "h4"}
@@ -180,7 +180,7 @@ export default function BannerSection() {
 
               <Typography
                 variant={isSmall ? "body1" : "h6"}
-                fontWeight={500}
+                fontWeight={400}
                 lineHeight={1.3}
               >
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime

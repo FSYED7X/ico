@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import colors from "../../colors";
 import { StyledPaper } from "../../styled";
@@ -69,23 +69,33 @@ export default function InfoSection() {
               }}
             >
               <Grid item>
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" fontWeight={"bold"}>
                   {left}
                 </Typography>
               </Grid>
               <Grid item sx={{ ml: "auto" }}>
-                <Typography
-                  variant="body2"
-                  color={color}
-                  className="textPrimary"
-                  fontWeight={400}
-                  align="right"
-                >
-                  {right} {copy && <Copy value={right} title={left} />}
-                </Typography>
-                <Typography variant="caption" color="error.main">
-                  {helper}
-                </Typography>
+                <Stack direction='row' spacing={1}>
+                  <section>
+                    <Typography
+                      variant="body2"
+                      color={color}
+                      className="textPrimary"
+                      fontWeight={400}
+                      align="right"
+                      mb={-.5}
+                    >
+                      {right}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      color="error.main"
+                      fontSize={"10px"}
+                    >
+                      {helper}
+                    </Typography>
+                  </section>
+                  {copy && <Copy value={right} title={left} />}
+                </Stack>
               </Grid>
             </Grid>
           );

@@ -36,7 +36,7 @@ export default function InfoTable() {
             <tbody key={`info-section-countdown-${index}`}>
               <tr>
                 <TableCell>
-                  <Typography variant="caption" fontWeight={500}>{left}</Typography>
+                  <Typography variant="caption" fontWeight={'bold'}>{left}</Typography>
                 </TableCell>
                 <TableCell align="right">
                   <Typography variant="caption" fontWeight={400}>{right}</Typography>

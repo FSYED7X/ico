@@ -2,6 +2,18 @@ import { Slider } from "@mui/material";
 import { styled } from "@mui/system";
 import colors from "./../../../colors";
 
+const smallCircleStyles = {
+  position: "absolute",
+  content: "''",
+  height: ".3rem",
+  width: ".3rem",
+  background: "white",
+  top: "50%",
+  transform: "translateY(-50%)",
+  borderRadius: "100%",
+  border: `2px solid`,
+};
+
 export const StyledSlider = styled(Slider)(({ theme }) => ({
   color: colors.yellow.v2,
   height: 6,
@@ -9,16 +21,9 @@ export const StyledSlider = styled(Slider)(({ theme }) => ({
   "& .MuiSlider-track": {
     border: "none",
     "&:after": {
-      position: "absolute",
-      content: "''",
-      height: ".2rem",
-      width: ".25rem",
-      background: "white",
-      top: "50%",
-      transform: "translateY(-50%)",
       left: 0,
-      borderRadius: "100%",
-      border: `3px solid ${colors.yellow.v2}`,
+      ...smallCircleStyles,
+      borderColor: colors.yellow.v2,
     },
   },
   "& .MuiSlider-thumb": {
@@ -50,16 +55,9 @@ export const StyledSlider = styled(Slider)(({ theme }) => ({
     backgroundColor: colors.white.v2,
 
     "&:after": {
-      position: "absolute",
-      content: "''",
-      height: ".2rem",
-      width: ".25rem",
-      background: "white",
-      top: "50%",
-      transform: "translateY(-50%)",
       right: 0,
-      borderRadius: "100%",
-      border: `3px solid ${colors.white.v2}`,
+      ...smallCircleStyles,
+      borderColor: colors.white.v2,
     },
   },
 }));

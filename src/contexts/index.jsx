@@ -11,7 +11,7 @@ export function AppProvider({ children }) {
   const ismd = useMediaQuery(theme.breakpoints.only("md"));
   const issm = useMediaQuery(theme.breakpoints.only("sm"));
   const isxs = useMediaQuery(theme.breakpoints.only("xs"));
-  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmall = useMediaQuery(theme.breakpoints.down("md"));
 
   const contextValue = {
     islg,
