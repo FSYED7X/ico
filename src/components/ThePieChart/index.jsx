@@ -58,7 +58,7 @@ const renderLegend = (props) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "0px!important",
+        padding: 0,
         alignItems: "center",
       }}
     >
