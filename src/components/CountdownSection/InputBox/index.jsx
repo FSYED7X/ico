@@ -11,7 +11,6 @@ import {
 import React, { useState } from "react";
 import colors from "../../../colors";
 import { StyledTextField, StyledYellowButton } from "./styled";
-import colors from './../../../colors';
 
 export default function InputBox() {
   const [val, setVal] = useState();
