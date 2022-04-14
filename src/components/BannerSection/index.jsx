@@ -8,6 +8,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import TouchRipple from "@mui/material/ButtonBase/TouchRipple";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import {
@@ -30,12 +31,7 @@ export default function BannerSection() {
   return (
     <div>
       <Box>
-        <img
-          src="/assets/banner.png"
-          alt=""
-          height={"100%"}
-          width="100%"
-        />
+        <img src="/assets/banner.png" alt="" height={"100%"} width="100%" />
       </Box>
 
       <Hidden smUp>
@@ -142,7 +138,32 @@ export default function BannerSection() {
                       { link: "", icon: <TokenExplorerBscScanIcon /> },
                     ].map((item, index) => {
                       return (
-                        <IconButton size="small" key={`banner-icons-${index}`}>
+                        <IconButton
+                          size="small"
+                          key={`banner-icons-${index}`}
+                          sx={{
+                            position: "relative",
+                            "&:after": {
+                              content: "''",
+                              position: "absolute",
+                              top: "0",
+                              left: "0",
+                              width: "0",
+                              height: "100%",
+                              backgroundColor: "rgba(255,255,255,0.4)",
+                              WebkitTransition: "none",
+                              MozTransition: "none",
+                              transition: "none",
+                            },
+                            "&:hover:after": {
+                              width: "120%",
+                              backgroundColor: "rgba(255,255,255,0)",
+                              WebkitTransition: "all 0.4s ease-in-out",
+                              MozTransition: "all 0.4s ease-in-out",
+                              transition: "all 0.4s ease-in-out",
+                            },
+                          }}
+                        >
                           {item.icon}
                         </IconButton>
                       );
