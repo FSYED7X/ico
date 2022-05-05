@@ -2,9 +2,13 @@ import { Button } from "@mui/material";
 import React from "react";
 import colors from "./../../colors";
 
-export default function BlackButton({ children, ...props }) {
+export default function BlackButton(props) {
   return (
     <Button
+
+      // onClick={() => {
+      //   props.fun?.();
+      // }}
       variant={"contained"}
       sx={{
         py: 0.3,
@@ -19,9 +23,10 @@ export default function BlackButton({ children, ...props }) {
           color: colors.black.v1,
         },
       }}
+      
       {...props}
     >
-      {children}
+      {props.children}
     </Button>
   );
 }

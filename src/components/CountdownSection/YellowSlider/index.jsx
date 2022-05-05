@@ -1,19 +1,20 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import { StyledSlider } from "./styled";
+import Web3 from "web3";
+import { useEffect, useState } from "react";
+import { icoAbi, icoAddress, tokenAbi } from "../../../config.js";
 
-export default function YelloSlider() {
-  const MAX = 200;
-
+export default function YelloSlider({ MAX, BNBgenerated }) {
   function valueLabelFormat(value) {
-    return `${value}% | ${parseInt((value / 100) * MAX)} BNB`;
+    return `${(value / MAX) * 100}% | ${value} BNB`;
   }
 
   return (
     <Box px={4} pt={4}>
       <StyledSlider
         max={MAX}
-        defaultValue={50}
+        defaultValue={BNBgenerated}
         aria-label="Default"
         valueLabelDisplay="on"
         getAriaValueText={valueLabelFormat}

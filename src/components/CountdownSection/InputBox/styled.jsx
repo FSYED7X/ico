@@ -13,11 +13,11 @@ export const StyledYellowButton = styled(Button)(({ theme }) => ({
 }));
 
 export const StyledTextField = styled(TextField)(({ theme }) => ({
-  overflow: "hidden",
+  // overflow: "hidden",
   "& input": {
     padding: theme.spacing(0.5, 1),
   },
   "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "inherit!important",
+    borderColor: `${colors.yellow.v1}!important`,
   },
 }));

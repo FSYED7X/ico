@@ -1,16 +1,20 @@
 import {
   Avatar,
+  CardActionArea,
   Container,
+  Divider,
   Grid,
   Hidden,
   IconButton,
+  Menu,
+  MenuItem,
   Paper,
+  Popper,
   Stack,
   Typography,
 } from "@mui/material";
-import TouchRipple from "@mui/material/ButtonBase/TouchRipple";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -20,13 +24,93 @@ import {
   TwitterIcon,
   WhitePaperIcon,
 } from "../../assets/Icons";
+import { HOME_LINK, SOCIAL_MEDIA } from "../../constants";
 import { useAppContext } from "../../hooks";
 import { StyledPaper } from "../../styled";
 import BlackButton from "../BlackButton";
+import colors from "./../../colors";
 
-export default function BannerSection() {
+export default function BannerSection({ address, SetAddress }) {
   const [height, setHeight] = useState();
   const { isSmall } = useAppContext();
+
+  useEffect(() => {
+    connect();
+  }, []);
+
+  async function connect() {
+    console.log("connect called");
+
+    try {
+      const accounts = await window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((r) => {
+          SetAddress(r[0]);
+        });
+    } catch (error) {
+      if (error.code === 4001) {
+      }
+    }
+  }
+
+  const ActionButtons = () => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    return (
+      <Fragment>
+        <BlackButton LinkComponent={"a"} href={HOME_LINK}>
+          Home
+        </BlackButton>
+
+        <BlackButton
+          onMouseOver={!isSmall ? handleClick : null}
+          onClick={address ? handleClick : connect}
+        >
+          {address
+            ? `${address.slice(0, 5)}...${address.slice(-4)}`
+            : "Connect Wallet"}
+        </BlackButton>
+
+        {address && (
+          <Menu
+            id="menu-ico-1"
+            anchorEl={anchorEl}
+            open={open}
+            defaultValue=""
+            PaperProps={{
+              elevation: 2,
+              sx: {
+                mt: 0.5,
+                width: "100px",
+                border: `2px solid ${colors.white.v3}`,
+                borderRadius: 2,
+                "& ul": {
+                  p: 0,
+                },
+              },
+            }}
+            onClose={handleClose}
+            disableAutoFocusItem
+          >
+            <MenuItem onClick={handleClose}>5 BNB</MenuItem>
+            <Divider
+              // sx={{ borderColor: colors.yellow.v3, borderWidth: 2 }}
+              style={{ margin: 0 }}
+            />
+            <MenuItem onClick={handleClose}>Logout</MenuItem>
+          </Menu>
+        )}
+      </Fragment>
+    );
+  };
+  //  window.ethereum.on("accountsChanged",(e,r)=>{window.location.reload()})
 
   return (
     <div>
@@ -44,8 +128,7 @@ export default function BannerSection() {
             transform: "translateY(-60%)",
           }}
         >
-          <BlackButton>Home</BlackButton>
-          <BlackButton>Connect Wallet</BlackButton>
+          <ActionButtons />
         </Stack>
       </Hidden>
 
@@ -70,16 +153,19 @@ export default function BannerSection() {
                   transform: isSmall && "translateY(-48%)",
                   p: 0.8,
                   borderRadius: 2,
+                  overflow: "hidden",
                 }}
               >
-                <Avatar
-                  src="/assets/logo.png"
-                  sx={{
-                    height: "100%",
-                    width: "100%",
-                    borderRadius: 2,
-                  }}
-                />
+                <CardActionArea LinkComponent={"a"} href={HOME_LINK}>
+                  <Avatar
+                    src="/assets/logo.png"
+                    sx={{
+                      height: "100%",
+                      width: "100%",
+                      borderRadius: 2,
+                    }}
+                  />
+                </CardActionArea>
               </Paper>
             </Grid>
 
@@ -128,52 +214,49 @@ export default function BannerSection() {
                     alignItems="center"
                     justifyContent={"flex-end"}
                   >
-                    {[
-                      { link: "", icon: <TelegramIcon /> },
-                      { link: "", icon: <TwitterIcon /> },
-                      { link: "", icon: <InstagramIcon /> },
-                      { link: "", icon: <FacebookIcon /> },
-                      { link: "", icon: <WhitePaperIcon /> },
-                      { link: "", icon: <SecurityAuditReportIcon /> },
-                      { link: "", icon: <TokenExplorerBscScanIcon /> },
-                    ].map((item, index) => {
-                      return (
-                        <IconButton
-                          size="small"
-                          key={`banner-icons-${index}`}
-                          sx={{
-                            position: "relative",
-                            "&:after": {
-                              content: "''",
-                              position: "absolute",
-                              top: "0",
-                              left: "0",
-                              width: "0",
-                              height: "100%",
-                              backgroundColor: "rgba(255,255,255,0.4)",
-                              WebkitTransition: "none",
-                              MozTransition: "none",
-                              transition: "none",
-                            },
-                            "&:hover:after": {
-                              width: "120%",
-                              backgroundColor: "rgba(255,255,255,0)",
-                              WebkitTransition: "all 0.4s ease-in-out",
-                              MozTransition: "all 0.4s ease-in-out",
-                              transition: "all 0.4s ease-in-out",
-                            },
-                          }}
-                        >
-                          {item.icon}
-                        </IconButton>
-                      );
-                    })}
+                    {React.Children.toArray(
+                      SOCIAL_MEDIA.map(({ link, icon }, index) => {
+                        return (
+                          link && (
+                            <IconButton
+                              size="small"
+                              key={`banner-icons-${index}`}
+                              LinkComponent="a"
+                              href={link}
+                              sx={{
+                                position: "relative",
+                                "&:after": {
+                                  content: "''",
+                                  position: "absolute",
+                                  top: "0",
+                                  left: "0",
+                                  width: "0",
+                                  height: "100%",
+                                  backgroundColor: "rgba(255,255,255,0.4)",
+                                  WebkitTransition: "none",
+                                  MozTransition: "none",
+                                  transition: "none",
+                                },
+                                "&:hover:after": {
+                                  width: "120%",
+                                  backgroundColor: "rgba(255,255,255,0)",
+                                  WebkitTransition: "all 0.4s ease-in-out",
+                                  MozTransition: "all 0.4s ease-in-out",
+                                  transition: "all 0.4s ease-in-out",
+                                },
+                              }}
+                            >
+                              {icon}
+                            </IconButton>
+                          )
+                        );
+                      })
+                    )}
                   </Stack>
                 </Stack>
                 <Hidden mdDown>
                   <Stack direction="row" spacing={1}>
-                    <BlackButton>Home</BlackButton>
-                    <BlackButton>Connect Wallet</BlackButton>
+                    <ActionButtons />
                   </Stack>
                 </Hidden>
               </Stack>

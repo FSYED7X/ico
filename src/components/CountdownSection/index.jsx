@@ -9,7 +9,22 @@ import InfoTable from "./InfoTable";
 import InputBox from "./InputBox";
 import YelloSlider from "./YellowSlider/index";
 
-const CountDownTimer = () => {
+const CountDownTimer = ({
+  tokenEndTime,
+  min,
+  max,
+  cap,
+  contributor,
+  BNBInvestment,
+  tokenInvestment,
+  tokenSymbol,
+  price,
+  address,
+  tokenDecimal,
+  BNBgenerated,
+  toggle,
+  setToggle,
+}) => {
   const { isSmall } = useAppContext();
 
   return (
@@ -41,10 +56,30 @@ const CountDownTimer = () => {
           Starts In
         </Typography>
       </Stack>
-      <Countdown />
-      <YelloSlider />
-      <InputBox />
-      <InfoTable />
+      {tokenEndTime && <Countdown tokenEndTime={tokenEndTime} />}
+      {BNBInvestment > 0 && (
+        <YelloSlider MAX={max} BNBgenerated={BNBInvestment} />
+      )}
+
+      <InputBox
+        MAX={max}
+        price={price}
+        tokenSymbol={tokenSymbol}
+        min={min}
+        address={address}
+        toggle={toggle}
+        setToggle={setToggle}
+      />
+      <InfoTable
+        min={min}
+        max={max}
+        cap={cap}
+        contributor={contributor}
+        BNBInvestment={BNBInvestment}
+        tokenInvestment={tokenInvestment}
+        tokenSymbol={tokenSymbol}
+        tokenDecimal={tokenDecimal}
+      />
     </StyledPaper>
   );
 };

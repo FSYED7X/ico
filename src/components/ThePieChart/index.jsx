@@ -1,16 +1,10 @@
-import { Chip, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import {
-  Cell,
-  Legend,
-  Line,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-} from "recharts";
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
 import colors from "../../colors";
 import { StyledPaper } from "../../styled";
+
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
   cx,
@@ -46,19 +40,30 @@ const data = [
   { name: "Funding 5", value: 300 },
   { name: "Funding 6", value: 200 },
 ];
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "#FF8042",
+  "#FF8042",
+  "#FF8042",
+  "#FF8042",
+  "#FF8042",
+];
 
 const renderLegend = (props) => {
   const { payload } = props;
+  // console.log("payload", payload);
   return (
     <ul
       style={{
         listStyleType: "none",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         padding: 0,
-        alignItems: "center",
+        width: "fit-content",
+        margin: "auto",
       }}
     >
       {payload.map((entry, index) => (
@@ -78,11 +83,11 @@ const renderLegend = (props) => {
             ></Box>
             <Typography variant="caption">{entry.value}</Typography>
             <Typography
-               variant="caption"
-               px={0.5}
-               bgcolor={colors.yellow.v1}
-               fontWeight={500}
-               borderRadius={1}
+              variant="caption"
+              px={0.5}
+              bgcolor={colors.yellow.v1}
+              fontWeight={500}
+              borderRadius={1}
             >
               {`${Math.round(entry.payload?.percent * 100)}%`}
             </Typography>
@@ -93,7 +98,7 @@ const renderLegend = (props) => {
               fontWeight={500}
               borderRadius={1}
             >
-              {`${Math.round(entry.payload?.percent * 100)} BNB`}
+              {`${entry.payload.value} BNB`}
             </Typography>
           </Stack>
         </li>
@@ -102,7 +107,7 @@ const renderLegend = (props) => {
   );
 };
 
-export default function ThePieChart() {
+export default function ThePieChart({ data1 = [] }) {
   return (
     <StyledPaper sx={{ p: 2, mt: 2 }}>
       <Typography align="center" variant="h6">
@@ -111,7 +116,11 @@ export default function ThePieChart() {
       <ResponsiveContainer width="100%" height={300 + data.length * 25}>
         <PieChart width={800} height={"100%"}>
           <Pie
-            data={data}
+            isAnimationActive={false}
+            data={data1.map(({ name, value }) => ({
+              name,
+              value: Number(value),
+            }))}
             label={renderCustomizedLabel}
             labelLine={false}
             innerRadius={80}
@@ -120,12 +129,14 @@ export default function ThePieChart() {
             paddingAngle={1}
             dataKey="value"
           >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
+            {React.Children.toArray(
+              data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))
+            )}
           </Pie>
           <Legend content={renderLegend} />
         </PieChart>
