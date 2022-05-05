@@ -73,8 +73,10 @@ export default function InputBox({
           }}
           sx={{
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: val ? `${colors.yellow.v3}!important` : "inherit",
-              borderWidth: 1.5
+              borderColor: `${
+                val ? colors.yellow.v3 : colors.white.v4
+              }!important`,
+              borderWidth: 1.5,
             },
           }}
           placeholder="0.0"
