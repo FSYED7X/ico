@@ -1,7 +1,7 @@
 import { AppProvider } from "./contexts";
 import IcoPage from "./page/ico";
 
-console.log("feature/users")
+console.log("users/add-edit");
 
 function App() {
   return (
