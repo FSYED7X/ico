@@ -1,7 +1,7 @@
 import { AppProvider } from "./contexts";
 import IcoPage from "./page/ico";
 
-console.log("feature/users sdasdasd")
+console.log("feature/users sdasdasd some more changes in assign contracts")
 
 function App() {
   return (
